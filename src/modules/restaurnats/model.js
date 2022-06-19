@@ -65,6 +65,7 @@ const DELETE_RESTAURANT = `
          restaurants
       WHERE
          id = $1
+      RETURNING *
 
 `
 

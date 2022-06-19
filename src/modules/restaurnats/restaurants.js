@@ -13,7 +13,7 @@ module.exports = {
    },
    GET_BY_RES_ID:async(req,res) => {
       try {
-         const { id } = req.body
+         const { id } = req.params
          res.json(await model.getRestaurantById(id))
       } catch (error) {
          res.sendStatus(500)
@@ -32,9 +32,18 @@ module.exports = {
    EDIT_RES:async(req,res) => {
       try {
          const {name , ctgry_id , id} = req.body
-         res.json( await model.editRestaurant(name , ctgry_id ? ctgry_id : null , id))
+         res.json( await model.editRestaurant(name , ctgry_id , id))
       } catch (error) {
          console.log(error)
+         res.sendStatus(500)
+      }
+   },
+   DEL:async(req,res) => {
+      try {
+         const { id } = req.params
+         res.json(await model.deleteRestaurant(id))
+      } catch (error) {
+         console.log(error);
          res.sendStatus(500)
       }
    }

@@ -39,13 +39,14 @@ CREATE TABLE branches (
 
  /* Order Table */
 
- CREATE TABLE orders (
+CREATE TABLE orders (
    id SERIAL PRIMARY KEY,
    client_name VARCHAR(128) NOT NULL,
    client_phone INT NOT NULL,
-   product_id INT REFERENCES products(id) NOT NULL
-   ordered_time VARCHAR(64) NOT NULL
- )
+   product_id INT REFERENCES products(id) NOT NULL,
+   ordered_time VARCHAR(64) NOT NULL,
+   order_status BOOLEAN NOT NULL DEFAULT 'T'
+)
 
 
 

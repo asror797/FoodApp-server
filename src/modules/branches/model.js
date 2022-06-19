@@ -15,6 +15,17 @@ const  GET_BRANCH = `
 `
 
 
+const GET_RES_BRANCH = `
+
+   SELECT 
+      *
+   FROM
+      branches
+   WHERE
+      restaurant_id = $1
+
+`
+
 
 const NEW_BRANCH =  `
    INSERT INTO branches (
@@ -32,14 +43,6 @@ const NEW_BRANCH =  `
 
 
 
-const GET_BY_ID = `
-   SELECT
-      *
-   FROM
-      branches
-   WHERE
-      restaurant_id = $1
-`
 
 
 
@@ -48,6 +51,8 @@ const DELETE_BRANCH = `
          branches
       WHERE
          id = $1
+      RETURNING
+         *
 `
 
 
@@ -55,7 +60,8 @@ const AllBranches = () => FetchAll(GET_BRANCH)
 
 const newBranch = (name,id) => Fetch(NEW_BRANCH, name, id)
 
-const getBranchById = (id) => FetchAll(GET_BY_ID,id)
+const getResBranch = (id) => FetchAll(GET_RES_BRANCH,id)
+
 
 const delBranch = (id) => Fetch(DELETE_BRANCH,id)
 
@@ -63,6 +69,6 @@ const delBranch = (id) => Fetch(DELETE_BRANCH,id)
 module.exports = {
    AllBranches,
    newBranch,
-   getBranchById,
+   getResBranch,
    delBranch
 }
