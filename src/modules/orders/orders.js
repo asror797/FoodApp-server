@@ -28,5 +28,14 @@ module.exports = {
          res.sendStatus(500)
          console.log(error);  
       }
+   },
+   CANCEL:async(req,res) => {
+      try {
+         const { id } = req.params
+         res.json(await model.cancelOrder(id))
+      } catch (error) {
+         res.sendStatus(500)
+         console.log(error);
+      }
    }
 }

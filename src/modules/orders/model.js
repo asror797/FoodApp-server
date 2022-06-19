@@ -2,12 +2,22 @@ const {Fetch , FetchAll} = require('../../utils/postgresql')
 
 
 const GET_ORDERS = `
-   SELECT 
-      *
-   FROM
-      orders
-
+   SELECT   
+      orders.id , 
+      orders.client_name , 
+      orders.client_phone , 
+      products.product_name ,
+      orders.ordered_time 
+   FROM 
+      orders  
+         inner join 
+            products 
+         on  
+            orders.product_id = products.id 
 `
+
+
+
 
 const NEW_ORDER =   `
    INSERT INTO orders (
@@ -34,6 +44,18 @@ const DELETE_ORDER = `
          id = $1
 `
 
+const CANCEL_ORDER = `
+
+      UPDATE TABLE
+         orders
+      SET
+         order_status = false
+      WHERE
+         id = $1
+      RETURNING
+         *
+
+`
 
 
 const getOrders = () => FetchAll(GET_ORDERS)
@@ -42,9 +64,12 @@ const newOrder = (name , phone , id , time) => Fetch(NEW_ORDER,name , phone , id
 
 const delOrder = id => Fetch(DELETE_ORDER,id)
 
+const cancelOrder = id => Fetch(CANCEL_ORDER,id)
+
 module.exports = {
    getOrders,
    newOrder,
-   delOrder
+   delOrder,
+   cancelOrder
 
 }

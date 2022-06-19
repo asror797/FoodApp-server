@@ -22,6 +22,7 @@ router
       .post('/order',OrderModule.NEW)
       .put('/restaurant', RestaurantModule.EDIT_RES)
       .put('/product',ProductModule.UPDATE)
+      .put('/order:id',OrderModule.CANCEL)
       .delete('/product/:id',ProductModule.DELETE)
       .delete('/restaurant/:id',RestaurantModule.DEL)
       .delete('/branch/:id',BranchModule.DEL_BRANCH)

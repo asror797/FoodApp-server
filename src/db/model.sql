@@ -33,7 +33,8 @@ CREATE TABLE branches (
    id SERIAL PRIMARY KEY,
    product_name VARCHAR(32) NOT NULL,
    product_price  INT NOT NULL,
-   branche_id INT REFERENCES branches(id) NOT NULL
+   branch_id INT REFERENCES branches(id) NOT NULL,
+   restaurant_id int REFERENCES restaurants(id) NOT NULL
  );
 
 

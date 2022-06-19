@@ -2,11 +2,7 @@ const { Pool } = require('pg')
 
 
 const pool = new Pool({
-   user:'asror',
-   password:'aaa13579#',
-   port:5432,
-   host:'localhost',
-   database:'restaurants'
+   connectionString:'postgres://ofskhwjm:sqzU83xbYJQwwfA6OINGhYx7eUyOo589@heffalump.db.elephantsql.com/ofskhwjm'
 })
 
 
