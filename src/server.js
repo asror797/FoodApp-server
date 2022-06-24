@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const PORT = process.env.PORT || 5000
 const cors = require('cors')
 
 const router = require('./modules')
@@ -12,6 +13,6 @@ app.use(router)
 
 
 
-app.listen(9000,()=>{
-   console.log('Server is ready at 9000 PORT');
+app.listen(PORT,()=>{
+   console.log(`Server is ready at ${PORT}`);
 })
